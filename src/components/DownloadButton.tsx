@@ -1,7 +1,16 @@
 import React from "react";
-import { State } from "../helpers/use-rendering";
 import { Button } from "./Button";
 import { Spacing } from "./Spacing";
+
+type State =
+  | {
+      status: "rendering";
+    }
+  | {
+      status: "done";
+      url: string;
+      size: number;
+    };
 
 const Megabytes: React.FC<{
   sizeInBytes: number;

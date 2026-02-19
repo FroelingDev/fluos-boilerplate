@@ -1,88 +1,75 @@
-<img src="https://github.com/remotion-dev/template-next/assets/1629785/9092db5f-7c0c-4d38-97c4-5f5a61f5cc098" />
-<br/>
-<br/>
+# Fluos Boilerplate Sandbox
 
-This is a Next.js template for building programmatic video apps, with [`@remotion/player`](https://remotion.dev/player) and [`@remotion/lambda`](https://remotion.dev/lambda) built in.
+This repository is the baseline project that runs inside a Daytona sandbox for Fluos AI.
 
-This template uses the Next.js App directory, with TailwindCSS. There is a [Non-TailwindCSS version](https://github.com/remotion-dev/template-next-app-dir), and a [Pages directory version](https://github.com/remotion-dev/template-next-pages-dir) of this template available.
+Users prompt Fluos AI, and the AI updates this codebase to change the video output.
 
-<img src="https://github.com/remotion-dev/template-next/assets/1629785/c9c2e5ca-2637-4ec8-8e40-a8feb5740d88" />
+## What this project includes
 
-## Getting Started
+- Next.js App Router app (`next@16`)
+- Remotion composition + in-browser preview player
+- Type-safe props with `zod`
+- Tailwind CSS v4 styling
+- Bun-based workflow
 
-[Use this template](https://github.com/new?template_name=template-next-app-dir-tailwind&template_owner=remotion-dev) to clone it into your GitHub account. Run
+## Quick start
 
-```
+```bash
 bun install
-```
-
-afterwards. Alternatively, use this command to scaffold a project:
-
-```
-npx create-video@latest --next-tailwind
-```
-
-## Commands
-
-Start the Next.js dev server:
-
-```
 bun run dev
 ```
 
-Open the Remotion Studio:
+Open `http://localhost:3000`.
 
+The homepage renders a live Remotion player for the `MyComp` composition using the default props in `types/constants.ts`.
+
+## Commands
+
+```bash
+# Start Next.js dev server
+bun run dev
+
+# Build production app
+bun run build
+
+# Start production server
+bun run start
+
+# Lint project
+bun run lint
+
+# Open Remotion Studio
+bun run remotion
+
+# Render composition locally from CLI
+bun run render
 ```
-npx remotion studio
+
+## Project structure
+
+```text
+src/app/
+  page.tsx                   # Frontend preview page
+  layout.tsx                 # App shell and metadata
+
+src/remotion/
+  Root.tsx                   # Registers compositions
+  MyComp/Main.tsx            # Main composition visuals and animation
+
+types/
+  constants.ts               # Composition id, dimensions, fps, default props
 ```
 
-Render a video locally:
+## AI editing guide (for Fluos)
 
-```
-bunx remotion render
-```
+When a user asks to change the video, these are the primary files to edit:
 
-Upgrade Remotion:
+- `src/remotion/MyComp/Main.tsx`: Visual design, timing, animation, text layout.
+- `types/constants.ts`: Composition ID, default props, width/height/fps/duration.
+- `src/remotion/Root.tsx`: Composition registration.
+- `src/app/page.tsx`: Preview behavior and player settings.
 
-```
-bunx remotion upgrade
-```
+## Notes for sandbox usage
 
-The following script will set up your Remotion Bundle and Lambda function on AWS:
-
-```
-node deploy.mjs
-```
-
-You should run this script after:
-
-- changing the video template
-- changing `config.mjs`
-- upgrading Remotion to a newer version
-
-## Set up rendering on AWS Lambda
-
-This template supports rendering the videos via [Remotion Lambda](https://remotion.dev/lambda).
-
-1. Copy the `.env.example` file to `.env` and fill in the values.
-   Complete the [Lambda setup guide](https://www.remotion.dev/docs/lambda/setup) to get your AWS credentials.
-
-1. Edit the `config.mjs` file to your desired Lambda settings.
-
-1. Run `node deploy.mjs` to deploy your Lambda function and Remotion Bundle.
-
-## Docs
-
-Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
-
-## Help
-
-We provide help on our [Discord server](https://remotion.dev/discord).
-
-## Issues
-
-Found an issue with Remotion? [File an issue here](https://remotion.dev/issue).
-
-## License
-
-Note that for some entities a company license is needed. [Read the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+- Turbopack root is pinned in `next.config.js` to this project directory.
+- This repo is intentionally small and editable so Fluos AI can modify it quickly from user prompts.

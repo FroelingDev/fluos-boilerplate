@@ -30,6 +30,7 @@ const Home: NextPage = () => {
       <div className="w-full max-w-screen-lg px-4">
         <div className="overflow-hidden rounded-lg shadow-2xl">
           <Player
+            acknowledgeRemotionLicense={true}
             component={Main}
             inputProps={inputProps}
             durationInFrames={DURATION_IN_FRAMES}
