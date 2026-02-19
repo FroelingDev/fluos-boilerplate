@@ -9,6 +9,10 @@ metadata:
 
 Use this skills whenever you are dealing with Remotion code to obtain the domain-specific knowledge.
 
+## Project integration
+
+For repository-specific file map and edit routing, load [../project-context/SKILL.md](../project-context/SKILL.md) first.
+
 ## Captions
 
 When dealing with captions or subtitles, load the [./rules/subtitles.md](./rules/subtitles.md) file for more information.

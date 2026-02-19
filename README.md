@@ -69,6 +69,13 @@ When a user asks to change the video, these are the primary files to edit:
 - `src/remotion/Root.tsx`: Composition registration.
 - `src/app/page.tsx`: Preview behavior and player settings.
 
+## For AI agents
+
+Use these docs as the canonical routing layer before editing:
+
+- [`AGENTS.md`](AGENTS.md): Repo entrypoint, edit boundaries, validation checklist.
+- [`.agents/README.md`](.agents/README.md): Local skill index and decision routing.
+
 ## Notes for sandbox usage
 
 - Turbopack root is pinned in `next.config.js` to this project directory.
